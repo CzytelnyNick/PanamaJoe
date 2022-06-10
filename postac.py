@@ -1,26 +1,18 @@
-import Tkinter as tk
+from tkinter import *
 
-class App(tk.Tk):
-    def __init__(self):
-        tk.Tk.__init__(self)
-        self.spritesheet = tk.PhotoImage(file="spritesheet.gif")
-        self.num_sprintes = 4
-        self.last_img = None
-        self.images = [self.subimage(32*i, 0, 32*(i+1), 48) for i in range(self.num_sprintes)]
-        self.canvas = tk.Canvas(self, width=100, height=100)
-        self.canvas.pack()
-        self.updateimage(0)
+main = Tk()
 
-    def subimage(self, l, t, r, b):
-        print(l,t,r,b)
-        dst = tk.PhotoImage()
-        dst.tk.call(dst, 'copy', self.spritesheet, '-from', l, t, r, b, '-to', 0, 0)
-        return dst
 
-    def updateimage(self, sprite):
-        self.canvas.delete(self.last_img)
-        self.last_img = self.canvas.create_image(16, 24, image=self.images[sprite])
-        self.after(100, self.updateimage, (sprite+1) % self.num_sprintes)
+def leftKey(event):
+    print("Left key pressed")
 
-app = App()
-app.mainloop()
+
+def rightKey(event):
+    print("Right key pressed")
+
+
+frame = Frame(main, width=100, height=100)
+main.bind('<Left>', leftKey)
+main.bind('<Right>', rightKey)
+frame.pack()
+main.mainloop()
