@@ -10,9 +10,9 @@ frame = Frame(root)
 root.geometry("200x200")
 # panel = Label(root, image=img)
 # panel2 = Label(root, image=img2)
-
-panel = Label(root, image=img)
-panel2 = Label(root, image=img2)
+frame.pack()
+panel = Label(frame, image=img)
+panel2 = Label(frame, image=img2)
 x = 0
 y = 0
 def move(event):
@@ -22,15 +22,17 @@ def move(event):
         print("dol")
     elif event.keysym == 'Left':
 
-        frame.pack_forget()
-        panel.pack(side="bottom", fill="both", expand="yes")
 
+
+
+        panel.pack()
         print("test")
 
     elif event.keysym == 'Right':
 
-        frame.pack_forget()
-        panel2.pack(side="bottom", fill="both", expand="yes")
+
+        panel2.pack()
+
 
 
         print("test")
