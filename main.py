@@ -12,27 +12,30 @@ root.geometry("200x200")
 # panel2 = Label(root, image=img2)
 frame.pack()
 panel = Label(frame, image=img)
-panel2 = Label(frame, image=img2)
+
 x = 0
 y = 0
+
 def move(event):
     if event.keysym == 'Up':  # rozpoznanie strzałki do góry
         print("gora")
     elif event.keysym == 'Down':
         print("dol")
     elif event.keysym == 'Left':
-
-
-
-
+        panel.config(image=img)
         panel.pack()
-        print("test")
+
+
+
+
+
+
+
+
 
     elif event.keysym == 'Right':
-
-
-        panel2.pack()
-
+        panel.config(image=img2)
+        panel.pack()
 
 
         print("test")
