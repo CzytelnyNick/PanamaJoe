@@ -1,18 +1,20 @@
-from tkinter import *
+import tkinter as tk
 
-main = Tk()
+# Creating the root window
+root = tk.Tk()
 
+# creating the Label with
+# the text Middle
+Label_middle = tk.Label(root,
+                        text='Middle')
 
-def leftKey(event):
-    print("Left key pressed")
-
-
-def rightKey(event):
-    print("Right key pressed")
-
-
-frame = Frame(main, width=100, height=100)
-main.bind('<Left>', leftKey)
-main.bind('<Right>', rightKey)
-frame.pack()
-main.mainloop()
+# Placing the Label at
+# the middle of the root window
+# relx and rely should be properly
+# set to position the label on
+# root window
+Label_middle.place(relx=1,
+                   rely=1,
+                   anchor='center')
+# Execute Tkinter
+root.mainloop()
