@@ -80,7 +80,7 @@ brick = ImageTk.PhotoImage(Image.open("brick.png"))
 door = ImageTk.PhotoImage(Image.open("doors.png"))
 pipe = ImageTk.PhotoImage(Image.open("pipe.png"))
 ladder = ImageTk.PhotoImage(Image.open("ladder.png"))
-platform = ImageTk.PhotoImage(Image.open("platform.jpg"))
+platform = ImageTk.PhotoImage(Image.open("platform.png"))
 fireB = ImageTk.PhotoImage(Image.open("fire1.png"))
 fireL = ImageTk.PhotoImage(Image.open("fire2.png"))
 def generateBlock(x, y, col):
