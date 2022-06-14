@@ -2,7 +2,7 @@
 # from PIL import ImageTk, Image
 # import asyncio
 # import os
-# from map import draw
+from map import *
 
 # root = Tk()
 # root.configure(background='black')
@@ -18,6 +18,7 @@
 # i = 0
 # x = 500
 # y = 100
+
 
 
 # def move(event):
@@ -49,9 +50,7 @@
 #         print(x)
 #         # panel2.pack(side="bottom", fill="both", expand="yes")
 
-# # Map().draw()
-# # map = Map(root)
-# # map.draw()
+
 
 # root.bind('<Key>', move)
 # root.mainloop()
@@ -66,51 +65,52 @@ win = Tk()
 win.geometry("700x350")
 
 # # Define a Canvas widget
-# canvas = Canvas(win, width=600, height=400, bg="white")
-# canvas.pack(pady=20)
+canvas = Canvas(win, width=600, height=400, bg="white")
+canvas.pack(pady=20)
 
 # # Add Images to Canvas widget
-# image = ImageTk.PhotoImage(Image.open('pos1.png'))
-# img = canvas.create_image(250, 120, anchor=NW, image=image)
+image = ImageTk.PhotoImage(Image.open('pos1.png'))
+img = canvas.create_image(250, 120, anchor=NW, image=image)
 
 frame = Frame(win, width=600, height=400)
 frame.place(anchor='center', relx=0.5, rely=0.5)
 frame.pack()
 
-# def left(e):
-#    x = -20
-#    y = 0
-#    canvas.move(img, x, y)
+def left(e):
+   x = -20
+   y = 0
+   canvas.move(img, x, y)
 
-# def right(e):
-#    x = 20
-#    y = 0
-#    canvas.move(img, x, y)
+def right(e):
+   x = 20
+   y = 0
+   canvas.move(img, x, y)
 
-# def up(e):
-#    x = 0
-#    y = -20
-#    canvas.move(img, x, y)
+def up(e):
+   x = 0
+   y = -20
+   canvas.move(img, x, y)
 
-# def down(e):
-#    x = 0
-#    y = 20
-#    canvas.move(img, x, y)
+def down(e):
+   x = 0
+   y = 20
+   canvas.move(img, x, y)
 
-# # Bind the move function
-# win.bind("<Left>", left)
-# win.bind("<Right>", right)
-# win.bind("<Up>", up)
-# win.bind("<Down>", down)
+# Bind the move function
+win.bind("<Left>", left)
+win.bind("<Right>", right)
+win.bind("<Up>", up)
+win.bind("<Down>", down)
 
-# map = Map(frame)
-# map.draw()
-# draw(frame)
-pmap = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1],
-    []
-]
+
+
+brick = ImageTk.PhotoImage(Image.open("brick.png"))
+
+
+map = PJM(frame)
+map.draw()
+
+
 
 
 # def draw():
@@ -121,25 +121,22 @@ pmap = [
 #             generateBlock(ccol, crow, col)
 #             ccol += 1
 #         crow += 1
-img = ImageTk.PhotoImage(file="brick.png")
-def generateBlock():
-    global frame
-    global ImageTk
-    global PhotoImage
-    global img
-    global Image
 
-    label = Label(frame, text="Hello World", width=10)
-    label.pack()
+# def generateBlock(img):
+#     global frame
+#     global ImageTk
+#     global PhotoImage
 
-    print(img)
-    label = Label(frame, image=img)
-    print(label)
-    label.pack()
+#     global Image
+    
+#     label = Label(frame, text="Hello World", width=10)
+#     label.pack()
 
+#     print(img)
+#     label = Label(frame, image = img)
+#     print(label)
+#     label.pack()
 
-
-
-# draw()
-generateBlock()
+# draw()\
+# generateBlock(brick)
 win.mainloop()
