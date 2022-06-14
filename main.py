@@ -41,7 +41,7 @@ canvas.pack(pady=20)
 
 image = ImageTk.PhotoImage(Image.open('pos2.png'))
 image2 = ImageTk.PhotoImage(Image.open('pos1.png'))
-img = canvas.create_image(200, 195, anchor=NW, image=image)
+img = canvas.create_image(150, 195, anchor=NW, image=image)
 
 
 frame = Frame(win, width=10000, height=598)
@@ -68,6 +68,8 @@ def up(e):
 def down(e):
    x = 0
    y = 15
+   # if x < 150 or x > 250:
+   #     canvas.itemconfig(150, 195)
    canvas.move(img, x, y)
 
 # Bind the move function
