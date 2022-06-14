@@ -1,99 +1,73 @@
-# from tkinter import *
-# from PIL import ImageTk, Image
-# import asyncio
-# import os
-from map import *
-
-# root = Tk()
-# root.configure(background='black')
-# img = ImageTk.PhotoImage(Image.open("pos1.png"))
-# img2 = ImageTk.PhotoImage(Image.open("pos2.png"))
-
-# root.geometry("300x200")
-# # myCanvas = Canvas(root, width = 600, height = 600, bg = "black")
-
-# player = Label(image=img)
-# player.pack()
-
-# i = 0
-# x = 500
-# y = 100
-
-
-
-# def move(event):
-#     global x
-#     global y
-#     # if event.keysym == 'Up':  # rozpoznanie strzałki do góry
-#     #     print("gora")
-#     # elif event.keysym == 'Down':
-#     #     myCanvas.create_image(x, y, anchor=NW, image=img2, tags='my_tag')
-#     if event.keysym == 'Left':
-
-#         # myCanvas.delete('my_tag')
-
-#         # myCanvas.create_image(x, y, anchor=NW, image=img, tags='my_tag')
-#         # panel.grid(row=3, column=3)
-#         # player.config(x=x, y=y)
-
-#         x = x - 10
-#         # player.config(padx=x, image=img)
-#         player.pack(padx=x, pady=y)
-#         print(x)
-
-#     elif event.keysym == 'Right':
-#         # myCanvas.delete('my_tag')
-#         # myCanvas.create_image(x, y, anchor=NW, image=img2, tags='my_tag')
-
-#         x = x + 10
-
-#         print(x)
-#         # panel2.pack(side="bottom", fill="both", expand="yes")
-
-
-
-# root.bind('<Key>', move)
-# root.mainloop()
-
 from tkinter import *
 from PIL import Image, ImageTk
+
+
+pmap = [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 3, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 2, 1, 1, 0, 0, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+    ]
 
 # Create an instance of tkinter frame
 win = Tk()
 
 # Set the size of the tkinter window
-win.geometry("700x350")
+win.geometry("900x1000")
 
-# # Define a Canvas widget
-canvas = Canvas(win, width=600, height=400, bg="white")
+canvas = Canvas(win, width=1000, height=900, bg="black")
 canvas.pack(pady=20)
 
-# # Add Images to Canvas widget
-image = ImageTk.PhotoImage(Image.open('pos1.png'))
-img = canvas.create_image(250, 120, anchor=NW, image=image)
+image = ImageTk.PhotoImage(Image.open('pos2.png'))
+image2 = ImageTk.PhotoImage(Image.open('pos1.png'))
+img = canvas.create_image(200, 195, anchor=NW, image=image)
 
-frame = Frame(win, width=600, height=400)
+
+frame = Frame(win, width=10000, height=598)
 frame.place(anchor='center', relx=0.5, rely=0.5)
 frame.pack()
 
 def left(e):
-   x = -20
+   x = -15
    y = 0
+   canvas.itemconfig(img, image=image2)
    canvas.move(img, x, y)
 
 def right(e):
-   x = 20
+   x = 15
    y = 0
+   canvas.itemconfig(img, image=image)
    canvas.move(img, x, y)
 
 def up(e):
    x = 0
-   y = -20
+   y = -15
    canvas.move(img, x, y)
 
 def down(e):
    x = 0
-   y = 20
+   y = 15
    canvas.move(img, x, y)
 
 # Bind the move function
@@ -102,41 +76,37 @@ win.bind("<Right>", right)
 win.bind("<Up>", up)
 win.bind("<Down>", down)
 
-
-
 brick = ImageTk.PhotoImage(Image.open("brick.png"))
+door = ImageTk.PhotoImage(Image.open("doors.png"))
+pipe = ImageTk.PhotoImage(Image.open("pipe.png"))
+ladder = ImageTk.PhotoImage(Image.open("ladder.png"))
+platform = ImageTk.PhotoImage(Image.open("platform.jpg"))
+fireB = ImageTk.PhotoImage(Image.open("fire1.png"))
+fireL = ImageTk.PhotoImage(Image.open("fire2.png"))
+def generateBlock(x, y, col):
+   if col == 1:
+    canvas.create_image(x*30, y*30, anchor=NW, image=brick)
+   elif col == 2:
+    canvas.create_image(x*30, y*30, anchor=NW, image=ladder)
+   elif col == 3:
+    canvas.create_image(x*31, y*30, anchor=NW, image=pipe)
+   elif col == 4:
+    canvas.create_image(x * 30, y * 30, anchor=NW, image=door)
+   elif col == 5:
+    canvas.create_image(x * 30, y * 30, anchor=NW, image=platform)
+   elif col == 6:
+       canvas.create_image(x * 30, y * 30, anchor=NW, image=fireB)
+   elif col == 7:
+       canvas.create_image(x * 30, y * 30, anchor=NW, image=fireL)
+crow = 0
+for row in pmap:
+   ccol = 0
+   for col in row:
+         generateBlock(ccol, crow, col)
+         ccol += 1
+   crow += 1
 
-
-map = PJM(frame)
-map.draw()
-
-
-
-
-# def draw():
-#     crow = 0
-#     for row in pmap:
-#         ccol = 0
-#         for col in row:
-#             generateBlock(ccol, crow, col)
-#             ccol += 1
-#         crow += 1
-
-# def generateBlock(img):
-#     global frame
-#     global ImageTk
-#     global PhotoImage
-
-#     global Image
-    
-#     label = Label(frame, text="Hello World", width=10)
-#     label.pack()
-
-#     print(img)
-#     label = Label(frame, image = img)
-#     print(label)
-#     label.pack()
-
-# draw()\
-# generateBlock(brick)
 win.mainloop()
+
+
+#HALF OF CODE BY MR BOGDANIK(HE'S A REAL PROGRAMER) GITHUB: https://github.com/RobertBogdanik
