@@ -38,22 +38,22 @@ class PJM():
 
         self.root = root
 
-        def generateBlock(x, y, sym, frame):
+    def generateBlock(x, y, sym, frame):
             print(frame)
             global img
 
             label = Label(frame, image = img)
             label.pack()
         img = ImageTk.PhotoImage(Image.open("brick.png"))
-        def draw(frame):
-            crow = 0
-            for crow in pmap:
+    def draw(frame):
+        crow = 0
+        for crow in pmap:
 
-                ccol = 0
-                for ccol in crow:
-                    generateBlock(ccol, crow, img, frame)
-                    ccol += 1
-                crow += 1
+            ccol = 0
+            for ccol in crow:
+                generateBlock(ccol, crow, img, frame)
+                ccol += 1
+            crow += 1
 
 
 
