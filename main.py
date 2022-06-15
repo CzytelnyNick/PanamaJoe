@@ -29,14 +29,22 @@ pmap = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
     ]
-
+blocks = {
+      1: { "img": "brick.png", "solid" : "true", "climb" : "false"},
+      2: { "img": "ladder.png", "solid" : "false", "climb" : "true"},
+      3: { "img": "pipe.png", "solid" : "false", "climb" : "true"},
+      4: { "img": "doors.png", "solid" : "true", "climb" : "false"},
+      5: { "img": "platform.png", "solid" : "true", "climb" : "false"},
+      6: { "img": "fireB.png", "solid" : "true", "climb" : "false"},
+      7: { "img": "fireL.png", "solid" : "true", "climb" : "false"}
+}
 # Create an instance of tkinter frame
 win = Tk()
 
 # Set the size of the tkinter window
-win.geometry("900x1000")
+win.geometry("900x900")
 
-canvas = Canvas(win, width=1000, height=900, bg="black")
+canvas = Canvas(win, width=900, height=900, bg="black")
 canvas.pack(pady=20)
 
 image = ImageTk.PhotoImage(Image.open('pos2.png'))
@@ -50,18 +58,12 @@ frame.pack()
 
 
 
-brick = ImageTk.PhotoImage(Image.open("brick.png"))
-door = ImageTk.PhotoImage(Image.open("doors.png"))
-pipe = ImageTk.PhotoImage(Image.open("pipe.png"))
-ladder = ImageTk.PhotoImage(Image.open("ladder.png"))
-platform = ImageTk.PhotoImage(Image.open("platform.png"))
-fireB = ImageTk.PhotoImage(Image.open("fire1.png"))
-fireL = ImageTk.PhotoImage(Image.open("fire2.png"))
+
 x = 15
 y = 15
 def generateBlock(x, y, col):
    if col == 1:
-    canvas.create_image(x*30, y*30, anchor=NW, image=brick)
+    canvas.create_image(x*30, y*30, anchor=NW, image=blocks[1])
    elif col == 2:
     canvas.create_image(x*30, y*30, anchor=NW, image=ladder)
    elif col == 3:
@@ -122,8 +124,8 @@ def gravity():
       if y > 195:
             y = 100
             canvas.move(img, 0, y)
-      if y > -195:
-            y = 0
+      if y < -195:
+            y = -195
             canvas.move(img, 0, y)
       if x < -150:
             x = -150
